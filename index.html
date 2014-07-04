@@ -1,40 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Local Notes</title>
-	
-	<style>
-	body{margin:0;font-family:'Open Sans',Helvetica,Arial,sans-serif;}
-	body,#notes{position:absolute;top:0;bottom:0;left:0;right:0;}
-	#notes{padding:8px;}
-	pre{white-space:pre-wrap; max-width:40em;font-family:'Open Sans',Helvetica,Arial,sans-serif;}
-	</style>
+  <meta charset="UTF-8">
+  <title>Local Notes</title>
+  
+  <style>
+  body{margin:0;font-family:'Open Sans',Helvetica,Arial,sans-serif;}
+  body,#notes{position:absolute;top:0;bottom:0;left:0;right:0;}
+  #notes{padding:8px;}
+  pre{white-space:pre-wrap; max-width:40em;font-family:'Open Sans',Helvetica,Arial,sans-serif;}
+  </style>
 </head>
 <body>
 <div id="notes" contenteditable></div>
 <script type="text/javascript">
   var notepad = document.getElementById('notes');
-	
-	if (window.localStorage && localStorage['notes']){
-		var stored = window.localStorage.getItem('notes');
-		notepad.innerHTML = stored;
-	}
-	window.onbeforeunload = save;
+  
+  if (window.localStorage && localStorage['notes']){
+    var stored = window.localStorage.getItem('notes');
+    notepad.innerHTML = stored;
+  }
+  window.onbeforeunload = save;
 
-	document.addEventListener("keydown", function(e) {
-		// press ctrl/meta + s
-		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-			save();
-			e.preventDefault();
-		}
-	}, false);
-	
-	
-	function save(){
-		var current = notepad.innerHTML;
-		window.localStorage.setItem('notes', current);
-	}
+  document.addEventListener("keydown", function(e) {
+    // press ctrl/meta + s
+    if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+      save();
+      e.preventDefault();
+    }
+  }, false);
+  
+  
+  function save(){
+    var current = notepad.innerHTML;
+    window.localStorage.setItem('notes', current);
+  }
 </script>
 </body>
 </html>
